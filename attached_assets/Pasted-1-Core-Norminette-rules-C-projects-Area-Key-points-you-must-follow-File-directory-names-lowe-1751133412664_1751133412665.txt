@@ -1,0 +1,52 @@
+1. Core Norminette rules (C projects)
+
+Area	Key points you must follow
+File / directory names	• lower-case, digits, _ only
+• struct → s_, typedef → t_, enum → e_, union → u_, global → g_ prefixes
+scribd.com
+Header	• Every .c/.h starts with the standard 42 header comment block 
+scribd.com
+Indentation & spacing	• Real tabs (width 4) for indentation
+• One instruction per line, one space around operators
+• No trailing spaces; blank lines are truly blank 
+scribd.com
+Line / function / file size	• Max 80 columns per line (tab counts as its spaces)
+• Max 25 lines per function (braces excluded)
+• Max 5 functions per .c file 
+scribd.com
+Variables & declarations	• ≤ 5 variables per block
+• One variable declaration per line, at top of the block, separated from code by an empty line
+• Pointer * sticks to the variable name (int *ptr) 
+scribd.com
+Function parameters	• ≤ 4 named parameters; if none, prototype is void 
+scribd.com
+Forbidden language constructs	for, do … while, switch / case, goto, nested ternaries, VLAs, multiple assignments 
+scribd.com
+Comments	• No //; block comments may not sit inside a function body; start with /* and each inner line begins with ** aligned 
+scribd.com
+Headers (.h)	• Only includes, prototypes, defines & macros allowed
+• Use include-guards (FT_FOO_H) and avoid unused includes 
+scribd.com
+Makefile	Must provide targets $(NAME), all, clean, fclean, re; relinking is forbidden; all source files explicitly listed 
+scribd.com
+2. Extra Piscine-only coding rules
+
+Think of these as a “hard mode” layer on top of the Norminette; graders will flag them even if Norm passes.
+Standard library usage is restricted – for the first days you are limited to write, read, exit, malloc, free; printf and friends are forbidden until later projects. 
+reddit.com
+25-line limit per function and 5 functions per file are strictly enforced (even more than during the curriculum). 
+github.com
+No control-flow shortcuts – for, switch / case, goto, do … while remain banned. 
+github.com
+No declaration + assignment on the same line inside functions (except for static or globals).
+github.com
+Compilation flags (checked by the Moulinette) are always
+-Wall -Wextra -Werror -std=c99; any warning ⇒ grade 0. (Common Piscine rule cited in project PDFs and cheat-sheets.) 
+github.com
+Memory-safety – every exercise is leak-checked; leaks or double-frees yield automatic failure (valgrind is your friend). 
+reddit.com
+No global variables unless explicitly asked; if you must use one, prefix with g_ and justify it during peer review. 
+github.com
+Makefile etiquette – make, make re, make clean must run silently (no echoing of commands) and must never re-link when no sources changed. (Implicit in every Piscine project PDF.) 
+reddit.com
+Peer-evaluation hint – your evaluator will run norminette first; one error → exercise score 0, regardless of code correctness. 
