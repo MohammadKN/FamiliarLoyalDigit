@@ -56,19 +56,19 @@ void	print_grid(int grid[4][4])
 		while (j < 4)
 		{
 			c = grid[i][j] + '0';
-			(void)write(1, &c, 1);
+			write(1, &c, 1);
 			if (j < 3)
-				(void)write(1, " ", 1);
+				write(1, " ", 1);
 			j++;
 		}
-		(void)write(1, "\n", 1);
+		write(1, "\n", 1);
 		i++;
 	}
 }
 
 void	print_error(void)
 {
-	(void)write(1, "Error\n", 6);
+	write(1, "Error\n", 6);
 }
 
 int	main(int argc, char **argv)
