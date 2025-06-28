@@ -30,45 +30,7 @@ int	solve_recursive(int grid[4][4], int views[16], int pos)
 
 #include <stdlib.h>
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
 
-void	print_grid(int grid[4][4])
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			ft_putchar(grid[i][j] + '0');
-			if (j < 3)
-				ft_putchar(' ');
-			j++;
-		}
-		ft_putchar('\n');
-		i++;
-	}
-}
-
-int	is_valid_placement(int grid[4][4], int row, int col, int num)
-{
-	int	i;
-
-	i = 0;
-	while (i < 4)
-	{
-		if (grid[row][i] == num || grid[i][col] == num)
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 int	check_views(int grid[4][4], int views[16])
 {
