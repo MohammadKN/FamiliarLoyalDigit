@@ -1,0 +1,65 @@
+~/workspace$ cc *.c
+find3s.c: In function ‘print_grid’:
+find3s.c:248:13: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  248 |             write(1, &c, 1);
+      |             ^~~~~~~~~~~~~~~
+find3s.c:250:17: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  250 |                 write(1, " ", 1);
+      |                 ^~~~~~~~~~~~~~~~
+find3s.c:252:9: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  252 |         write(1, "\n", 1);
+      |         ^~~~~~~~~~~~~~~~~
+find3s.c: In function ‘main’:
+find3s.c:261:9: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  261 |         write(1, "Error\n", 6);
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+find3s.c:276:9: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  276 |         write(1, "Error\n", 6);
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+main.c: In function ‘print_grid’:
+main.c:59:25: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+   59 |                         write(1, &c, 1);
+      |                         ^~~~~~~~~~~~~~~
+main.c:61:33: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+   61 |                                 write(1, " ", 1);
+      |                                 ^~~~~~~~~~~~~~~~
+main.c:64:17: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+   64 |                 write(1, "\n", 1);
+      |                 ^~~~~~~~~~~~~~~~~
+main.c: In function ‘print_error’:
+main.c:71:9: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+   71 |         write(1, "Error\n", 6);
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+view_handlers.c: In function ‘ft_putchar’:
+view_handlers.c:35:9: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+   35 |         write(1, &c, 1);
+      |         ^~~~~~~~~~~~~~~
+view_matching.c: In function ‘print_grid’:
+view_matching.c:9:13: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+    9 |             write(1, &c, 1);
+      |             ^~~~~~~~~~~~~~~
+view_matching.c:11:17: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+   11 |                 write(1, " ", 1);
+      |                 ^~~~~~~~~~~~~~~~
+view_matching.c:13:9: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+   13 |         write(1, "\n", 1);
+      |         ^~~~~~~~~~~~~~~~~
+/nix/store/bgcaxhhxswzvmxjbbgvvaximm5hwghz1-binutils-2.41/bin/ld: /tmp/ccGPdsDG.o: in function `print_grid':
+main.c:(.text+0xf0): multiple definition of `print_grid'; /tmp/cct13jFO.o:find3s.c:(.text+0x520): first defined here
+/nix/store/bgcaxhhxswzvmxjbbgvvaximm5hwghz1-binutils-2.41/bin/ld: /tmp/ccGPdsDG.o: in function `main':
+main.c:(.text.startup+0x0): multiple definition of `main'; /tmp/cct13jFO.o:find3s.c:(.text.startup+0x0): first defined here
+/nix/store/bgcaxhhxswzvmxjbbgvvaximm5hwghz1-binutils-2.41/bin/ld: /tmp/ccuOmbyp.o: in function `solve':
+solver.c:(.text+0x60): multiple definition of `solve'; /tmp/cct13jFO.o:find3s.c:(.text+0x4d0): first defined here
+/nix/store/bgcaxhhxswzvmxjbbgvvaximm5hwghz1-binutils-2.41/bin/ld: /tmp/ccKHX3ZQ.o: in function `print_grid':
+view_handlers.c:(.text+0x30): multiple definition of `print_grid'; /tmp/cct13jFO.o:find3s.c:(.text+0x520): first defined here
+/nix/store/bgcaxhhxswzvmxjbbgvvaximm5hwghz1-binutils-2.41/bin/ld: /tmp/ccKHX3ZQ.o: in function `is_valid_placement':
+view_handlers.c:(.text+0x90): multiple definition of `is_valid_placement'; /tmp/ccuOmbyp.o:solver.c:(.text+0x20): first defined here
+/nix/store/bgcaxhhxswzvmxjbbgvvaximm5hwghz1-binutils-2.41/bin/ld: /tmp/ccKHX3ZQ.o: in function `check_views':
+view_handlers.c:(.text+0xd0): multiple definition of `check_views'; /tmp/ccwYX8Az.o:validation.c:(.text+0xd0): first defined here
+/nix/store/bgcaxhhxswzvmxjbbgvvaximm5hwghz1-binutils-2.41/bin/ld: /tmp/ccOKXyXs.o: in function `print_grid':
+view_matching.c:(.text+0x0): multiple definition of `print_grid'; /tmp/cct13jFO.o:find3s.c:(.text+0x520): first defined here
+/nix/store/bgcaxhhxswzvmxjbbgvvaximm5hwghz1-binutils-2.41/bin/ld: /tmp/ccOKXyXs.o: in function `solve.localalias':
+view_matching.c:(.text+0x160): multiple definition of `solve'; /tmp/cct13jFO.o:find3s.c:(.text+0x4d0): first defined here
+/nix/store/bgcaxhhxswzvmxjbbgvvaximm5hwghz1-binutils-2.41/bin/ld: /tmp/ccOKXyXs.o: in function `check_views':
+view_matching.c:(.text+0x240): multiple definition of `check_views'; /tmp/ccwYX8Az.o:validation.c:(.text+0xd0): first defined here
+collect2: error: ld returned 1 exit status
