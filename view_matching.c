@@ -48,7 +48,7 @@ int solve(int grid[4][4], int *clues, int position) {
             if (solve(grid, clues, position + 1))
                 return 1;
 
-            grid[row][col] = 0; // Backtrack
+            grid[row][col] = 0;
         }
     }
 
@@ -58,7 +58,6 @@ int solve(int grid[4][4], int *clues, int position) {
 int check_views(int grid[4][4], int *clues) {
     int i, j, count, max_height;
 
-    // Check top views
     for (i = 0; i < 4; i++) {
         count = 0;
         max_height = 0;
@@ -72,7 +71,6 @@ int check_views(int grid[4][4], int *clues) {
             return 0;
     }
 
-    // Check bottom views
     for (i = 0; i < 4; i++) {
         count = 0;
         max_height = 0;
@@ -86,7 +84,6 @@ int check_views(int grid[4][4], int *clues) {
             return 0;
     }
 
-    // Check left views
     for (i = 0; i < 4; i++) {
         count = 0;
         max_height = 0;
@@ -100,7 +97,6 @@ int check_views(int grid[4][4], int *clues) {
             return 0;
     }
 
-    // Check right views
     for (i = 0; i < 4; i++) {
         count = 0;
         max_height = 0;
@@ -115,43 +111,4 @@ int check_views(int grid[4][4], int *clues) {
     }
 
     return 1;
-}
-
-int main(int argc, char **argv) {
-    if (argc != 2) {
-        write(1, "Error\n", 6);
-        return 1;
-    }
-
-    int clues[16];
-    int grid[4][4] = {0};
-    char *input = argv[1];
-    int i = 0, j = 0;
-
-    // Parse input clues
-    while (input[i]) {
-        if (input[i] >= '1' && input[i] <= '4') {
-            clues[j++] = input[i] - '0';
-        } else if (input[i] != ' ') {
-            write(1, "Error\n", 6);
-            return 1;
-        }
-        i++;
-    }
-
-    if (j != 16) {
-        write(1, "Error\n", 6);
-        return 1;
-    }
-
-    if (solve(grid, clues, 0)) {
-        if (check_views(grid, clues))
-        	print_grid(grid);
-        else
-        	write(1, "Error\n", 6);
-    } else {
-        write(1, "Error\n", 6);
-    }
-
-    return 0;
 }

@@ -27,12 +27,7 @@ int	solve_recursive(int grid[4][4], int views[16], int pos)
 	}
 	return (0);
 }
-```
 
-Since the provided code is a snippet and needs to adhere to the assignment which aims to solve the skyscraper puzzle according to specific constraints (4x4 grid, `write` syscall, etc.), a complete solution including main function, parsing logic, validation functions, and the required `write` based output is required.
-
-```c
-#include <unistd.h>
 #include <stdlib.h>
 
 void	ft_putchar(char c)
@@ -161,31 +156,6 @@ int	check_views(int grid[4][4], int views[16])
 	return (1);
 }
 
-int	solve_recursive(int grid[4][4], int views[16], int pos)
-{
-	int	row;
-	int	col;
-	int	num;
-
-	if (pos == 16)
-		return (check_views(grid, views));
-	row = pos / 4;
-	col = pos % 4;
-	num = 1;
-	while (num <= 4)
-	{
-		if (is_valid_placement(grid, row, col, num))
-		{
-			grid[row][col] = num;
-			if (solve_recursive(grid, views, pos + 1))
-				return (1);
-			grid[row][col] = 0;
-		}
-		num++;
-	}
-	return (0);
-}
-
 int	parse_views(char *arg, int views[16])
 {
 	int	i;
@@ -207,39 +177,4 @@ int	parse_views(char *arg, int views[16])
 	if (j != 16)
 		return (0);
 	return (1);
-}
-
-int	main(int argc, char **argv)
-{
-	int	grid[4][4];
-	int	views[16];
-	int	i;
-	int	j;
-
-	if (argc != 2)
-	{
-		write(1, "Error\n", 6);
-		return (1);
-	}
-	if (!parse_views(argv[1], views))
-	{
-		write(1, "Error\n", 6);
-		return (1);
-	}
-	i = 0;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			grid[i][j] = 0;
-			j++;
-		}
-		i++;
-	}
-	if (solve_recursive(grid, views, 0))
-		print_grid(grid);
-	else
-		write(1, "Error\n", 6);
-	return (0);
 }
