@@ -1,8 +1,7 @@
 #include <unistd.h>
 
 int	check_views(int grid[4][4], int views[16]);
-
-
+int	is_valid_placement(int grid[4][4], int row, int col, int num);
 
 int	solve_recursive(int grid[4][4], int views[16], int pos)
 {
