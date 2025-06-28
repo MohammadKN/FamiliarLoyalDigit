@@ -1,7 +1,20 @@
 #include <unistd.h>
 
-int	is_valid_placement(int grid[4][4], int row, int col, int num);
 int	check_views(int grid[4][4], int views[16]);
+
+int	is_valid_placement(int grid[4][4], int row, int col, int num)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (grid[row][i] == num || grid[i][col] == num)
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 int	solve_recursive(int grid[4][4], int views[16], int pos)
 {
@@ -32,91 +45,7 @@ int	solve_recursive(int grid[4][4], int views[16], int pos)
 
 
 
-int	check_views(int grid[4][4], int views[16])
-{
-	int	i;
-	int	j;
-	int	count;
-	int	max_height;
 
-	i = 0;
-	while (i < 4)
-	{
-		count = 0;
-		max_height = 0;
-		j = 0;
-		while (j < 4)
-		{
-			if (grid[i][j] > max_height)
-			{
-				max_height = grid[i][j];
-				count++;
-			}
-			j++;
-		}
-		if (count != views[i])
-			return (0);
-		i++;
-	}
-	i = 0;
-	while (i < 4)
-	{
-		count = 0;
-		max_height = 0;
-		j = 0;
-		while (j < 4)
-		{
-			if (grid[j][i] > max_height)
-			{
-				max_height = grid[j][i];
-				count++;
-			}
-			j++;
-		}
-		if (count != views[4 + i])
-			return (0);
-		i++;
-	}
-	i = 0;
-	while (i < 4)
-	{
-		count = 0;
-		max_height = 0;
-		j = 3;
-		while (j >= 0)
-		{
-			if (grid[i][j] > max_height)
-			{
-				max_height = grid[i][j];
-				count++;
-			}
-			j--;
-		}
-		if (count != views[8 + i])
-			return (0);
-		i++;
-	}
-	i = 0;
-	while (i < 4)
-	{
-		count = 0;
-		max_height = 0;
-		j = 3;
-		while (j >= 0)
-		{
-			if (grid[j][i] > max_height)
-			{
-				max_height = grid[j][i];
-				count++;
-			}
-			j--;
-		}
-		if (count != views[12 + i])
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 int	parse_views(char *arg, int views[16])
 {
