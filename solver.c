@@ -1,45 +1,50 @@
 
-#include <stdio.h>
 #include <unistd.h>
 
-void	findView4(int game[6][6], int *count);
-void	findView1(int game[6][6]);
-void	find(int game[6][6], int num);
-void	match_3_1(int game[6][6], int *count);
-void	find3s(int game[6][6], int rowID, int colID, int *count);
-int	fillGaps(int game[6][6]);
+void	init_grid(int grid[4][4]);
+int		is_valid_placement(int grid[4][4], int row, int col, int num);
+int		check_views(int grid[4][4], int views[16]);
+int		solve_recursive(int grid[4][4], int views[16], int pos);
+void	print_grid(int grid[4][4]);
+void	print_error(void);
 
-void	solve(int game[6][6])
+void	init_grid(int grid[4][4])
 {
 	int	i;
 	int	j;
-	int	changed;
-	int	count;
 
-	count = 0;
-	findView4(game, &count);
-	findView1(game);
-	find(game, 4);
-	match_3_1(game, &count);
-	find3s(game, 0, 0, &count);
-	find(game, 3);
-	changed = 1;
-	while (changed)
-	{
-		changed = 0;
-		if (fillGaps(game))
-			changed = 1;
-	}
 	i = 0;
-	while (i < 6)
+	while (i < 4)
 	{
 		j = 0;
-		while (j < 6)
+		while (j < 4)
 		{
-			printf("%d ", game[i][j]);
+			grid[i][j] = 0;
 			j++;
 		}
-		printf("\n");
 		i++;
 	}
+}
+
+int	is_valid_placement(int grid[4][4], int row, int col, int num)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (grid[row][i] == num || grid[i][col] == num)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void	solve(int grid[4][4], int views[16])
+{
+	init_grid(grid);
+	if (!solve_recursive(grid, views, 0))
+		print_error();
+	else
+		print_grid(grid);
 }

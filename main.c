@@ -1,46 +1,91 @@
-#include <stdio.h>
+
 #include <unistd.h>
+#include <stdlib.h>
 
-void	solve(int game[6][6]);
-void	initializeGame(int views[16], int game[6][6]);
+void	solve(int grid[4][4], int views[16]);
+int		parse_input(char *str, int views[16]);
+void	print_grid(int grid[4][4]);
+void	print_error(void);
 
-void	initializeGame(int views[16], int game[6][6])
+int	is_digit(char c)
+{
+	return (c >= '1' && c <= '4');
+}
+
+int	parse_input(char *str, int views[16])
 {
 	int	i;
-	int	j;
+	int	view_count;
 
 	i = 0;
-	while (i < 6)
+	view_count = 0;
+	while (str[i] && view_count < 16)
+	{
+		while (str[i] == ' ')
+			i++;
+		if (!str[i])
+			break ;
+		if (!is_digit(str[i]))
+			return (0);
+		views[view_count] = str[i] - '0';
+		view_count++;
+		i++;
+		while (str[i] && str[i] != ' ')
+		{
+			if (str[i] != ' ')
+				return (0);
+		}
+	}
+	while (str[i] == ' ')
+		i++;
+	if (view_count != 16 || str[i])
+		return (0);
+	return (1);
+}
+
+void	print_grid(int grid[4][4])
+{
+	int		i;
+	int		j;
+	char	c;
+
+	i = 0;
+	while (i < 4)
 	{
 		j = 0;
-		while (j < 6)
+		while (j < 4)
 		{
-			game[i][j] = 0;
+			c = grid[i][j] + '0';
+			write(1, &c, 1);
+			if (j < 3)
+				write(1, " ", 1);
 			j++;
 		}
-		i++;
-	}
-	i = 0;
-	while (i < 16)
-	{
-		if (i < 4)
-			game[0][i + 1] = views[i];
-		else if (i < 8)
-			game[5][i - 3] = views[i];
-		else if (i < 12)
-			game[i - 7][0] = views[i];
-		else if (i < 16)
-			game[i - 11][5] = views[i];
+		write(1, "\n", 1);
 		i++;
 	}
 }
 
+void	print_error(void)
+{
+	write(1, "Error\n", 6);
+}
+
 int	main(int argc, char **argv)
 {
-	int	views[16] = {3, 2, 3, 1, 2, 3, 1, 2, 3, 2, 1, 2, 1, 2, 3, 2};
-	int	game[6][6];
+	int	views[16];
+	int	grid[4][4];
 
-	initializeGame(views, game);
-	solve(game);
+	if (argc != 2)
+	{
+		print_error();
+		return (1);
+	}
+	if (!parse_input(argv[1], views))
+	{
+		print_error();
+		return (1);
+	}
+	solve(grid, views);
 	return (0);
 }
